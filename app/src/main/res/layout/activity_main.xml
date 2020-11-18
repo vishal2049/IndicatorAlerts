@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+        <Button
+            android:layout_width="45dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="15dp"
+            android:onClick="showEMAs"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/ic_baseline_visibility_24" />
+
+        <AutoCompleteTextView
+            android:id="@+id/atv"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:text="BTCUSDT"
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
+             />
+        </RelativeLayout>
+    </LinearLayout>
+    
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1">
+
+           <EditText
+               android:id="@+id/EMA1_1min"
+               android:layout_width="120dp"
+               android:layout_height="wrap_content"
+               android:hint="EMA 9"
+               android:layout_alignParentLeft="true"
+               android:layout_marginLeft="15dp"
+               android:inputType="numberDecimal"
+               />
+            <EditText
+                android:id="@+id/EMA2_1min"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="EMA 24"
+                android:layout_marginLeft="160dp"
+                android:inputType="numberDecimal"
+                />
+
+            <CheckBox
+                android:id="@+id/min1"
+                android:layout_width="80dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:text="1min"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/EMA1_5min"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="EMA 9"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:inputType="numberDecimal"
+                />
+            <EditText
+                android:id="@+id/EMA2_5min"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="EMA 24"
+                android:layout_marginLeft="160dp"
+                android:inputType="numberDecimal"
+                />
+
+            <CheckBox
+                android:id="@+id/min5"
+                android:layout_width="80dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:text="5min"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/EMA1_15min"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="EMA 9"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:inputType="numberDecimal"
+                />
+            <EditText
+                android:id="@+id/EMA2_15min"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="EMA 24"
+                android:layout_marginLeft="160dp"
+                android:inputType="numberDecimal"
+                />
+
+            <CheckBox
+                android:id="@+id/min15"
+                android:layout_width="80dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:text="15min"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/EMA1_30min"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="EMA 9"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:inputType="numberDecimal"
+                />
+            <EditText
+                android:id="@+id/EMA2_30min"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="EMA 24"
+                android:layout_marginLeft="160dp"
+                android:inputType="numberDecimal"
+                />
+
+            <CheckBox
+                android:id="@+id/min30"
+                android:layout_width="80dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:text="30min"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/EMA1_1hr"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="EMA 9"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:inputType="numberDecimal"
+                />
+            <EditText
+                android:id="@+id/EMA2_1hr"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="EMA 24"
+                android:layout_marginLeft="160dp"
+                android:inputType="numberDecimal"
+                />
+
+            <CheckBox
+                android:id="@+id/hr1"
+                android:layout_width="80dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:text="1H"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/EMA1_4hr"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="EMA 9"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:inputType="numberDecimal"
+                />
+            <EditText
+                android:id="@+id/EMA2_4hr"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="EMA 24"
+                android:layout_marginLeft="160dp"
+                android:inputType="numberDecimal"
+                />
+
+            <CheckBox
+                android:id="@+id/hr4"
+                android:layout_width="80dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:text="4H"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/EMA1_1d"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="EMA 9"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:inputType="numberDecimal"
+                />
+            <EditText
+                android:id="@+id/EMA2_1d"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="EMA 24"
+                android:layout_marginLeft="160dp"
+                android:inputType="numberDecimal"
+                />
+
+            <CheckBox
+                android:id="@+id/d1"
+                android:layout_width="80dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:text="1D"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/run"
+        android:layout_width="140dp"
+        android:layout_height="55dp"
+        android:layout_marginVertical="20dp"
+        android:layout_gravity="center"
+        android:onClick="run"
+        android:text="Run"/>
+
+</LinearLayout>
