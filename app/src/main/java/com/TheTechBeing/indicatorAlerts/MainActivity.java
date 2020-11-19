@@ -15,13 +15,18 @@ import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.SimpleTimeZone;
 
 public class MainActivity extends AppCompatActivity {
     myDBHelper myDB;
+    TextView showTime;
     CheckBox min1, min5, min15, min30, hr1, hr4, d1;
     AutoCompleteTextView atv;
     String selectedSymbol = "BTCUSDT";
@@ -36,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(this, myService.class);
-        ContextCompat.startForegroundService(this, intent);
+//        Intent intent = new Intent(this, myService.class);
+//        ContextCompat.startForegroundService(this, intent);
 
         EMA1_1min = findViewById(R.id.EMA1_1min);
         EMA1_5min = findViewById(R.id.EMA1_5min);
@@ -54,6 +59,24 @@ public class MainActivity extends AppCompatActivity {
         EMA2_4hr = findViewById(R.id.EMA2_4hr);
         EMA2_1d = findViewById(R.id.EMA2_1d);
         atv = findViewById(R.id.atv);
+        showTime = findViewById(R.id.showTime);
+
+
+        //showtime
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true) {
+                    showTime.setText("" + new SimpleDateFormat("mm:ss").format(new Date()));
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
 
         // prepare coins list
         coinsList.add("BTCUSDT");
@@ -110,110 +133,113 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void run(View view) {
-        if (timeList.isEmpty())
-            Toast.makeText(MainActivity.this, "List empty", Toast.LENGTH_SHORT).show();
-        for (String t : timeList) {
-            switch (t) {
-                case "1m": {
-                    if (EMA1_1min.getText().toString().equals("")) {
-                        EMA1_1min.setError("required");
-                        return;
-                    }
-                    if (EMA2_1min.getText().toString().equals("")) {
-                        EMA2_1min.setError("required");
-                        return;
-                    }
-
-                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_1min.getText().toString()), Double.parseDouble(EMA2_1min.getText().toString()));
-                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
-                    break;
-                }
-                case "5m": {
-                    if (EMA1_5min.getText().toString().equals("")) {
-                        EMA1_5min.setError("required");
-                        return;
-                    }
-                    if (EMA2_5min.getText().toString().equals("")) {
-                        EMA2_5min.setError("required");
-                        return;
-                    }
-
-                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_5min.getText().toString()), Double.parseDouble(EMA2_5min.getText().toString()));
-                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
-                    break;
-                }
-                case "15m": {
-                    if (EMA1_15min.getText().toString().equals("")) {
-                        EMA1_15min.setError("required");
-                        return;
-                    }
-                    if (EMA2_15min.getText().toString().equals("")) {
-                        EMA2_15min.setError("required");
-                        return;
-                    }
-
-                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_15min.getText().toString()), Double.parseDouble(EMA2_15min.getText().toString()));
-                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
-                    break;
-                }
-                case "30m": {
-                    if (EMA1_30min.getText().toString().equals("")) {
-                        EMA1_30min.setError("required");
-                        return;
-                    }
-                    if (EMA2_30min.getText().toString().equals("")) {
-                        EMA2_30min.setError("required");
-                        return;
-                    }
-
-                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_30min.getText().toString()), Double.parseDouble(EMA2_30min.getText().toString()));
-                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
-                    break;
-                }
-                case "1h": {
-                    if (EMA1_1hr.getText().toString().equals("")) {
-                        EMA1_1hr.setError("required");
-                        return;
-                    }
-                    if (EMA2_1hr.getText().toString().equals("")) {
-                        EMA2_1hr.setError("required");
-                        return;
-                    }
-
-                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_1hr.getText().toString()), Double.parseDouble(EMA2_1hr.getText().toString()));
-                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
-                    break;
-                }
-                case "4h": {
-                    if (EMA1_4hr.getText().toString().equals("")) {
-                        EMA1_4hr.setError("required");
-                        return;
-                    }
-                    if (EMA2_4hr.getText().toString().equals("")) {
-                        EMA2_4hr.setError("required");
-                        return;
-                    }
-
-                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_4hr.getText().toString()), Double.parseDouble(EMA2_4hr.getText().toString()));
-                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
-                    break;
-                }
-                case "1d": {
-                    if (EMA1_1d.getText().toString().equals("")) {
-                        EMA1_1d.setError("required");
-                        return;
-                    }
-                    if (EMA2_1d.getText().toString().equals("")) {
-                        EMA2_1d.setError("required");
-                        return;
-                    }
-
-                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_1d.getText().toString()), Double.parseDouble(EMA2_1d.getText().toString()));
-                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
-                    break;
-                }
-            }
-        }
+        Intent intent = new Intent(this, myService.class);
+        intent.putExtra("start",true);
+        ContextCompat.startForegroundService(this, intent);
+//        if (timeList.isEmpty())
+//            Toast.makeText(MainActivity.this, "List empty", Toast.LENGTH_SHORT).show();
+//        for (String t : timeList) {
+//            switch (t) {
+//                case "1m": {
+//                    if (EMA1_1min.getText().toString().equals("")) {
+//                        EMA1_1min.setError("required");
+//                        return;
+//                    }
+//                    if (EMA2_1min.getText().toString().equals("")) {
+//                        EMA2_1min.setError("required");
+//                        return;
+//                    }
+//
+//                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_1min.getText().toString()), Double.parseDouble(EMA2_1min.getText().toString()));
+//                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
+//                    break;
+//                }
+//                case "5m": {
+//                    if (EMA1_5min.getText().toString().equals("")) {
+//                        EMA1_5min.setError("required");
+//                        return;
+//                    }
+//                    if (EMA2_5min.getText().toString().equals("")) {
+//                        EMA2_5min.setError("required");
+//                        return;
+//                    }
+//
+//                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_5min.getText().toString()), Double.parseDouble(EMA2_5min.getText().toString()));
+//                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
+//                    break;
+//                }
+//                case "15m": {
+//                    if (EMA1_15min.getText().toString().equals("")) {
+//                        EMA1_15min.setError("required");
+//                        return;
+//                    }
+//                    if (EMA2_15min.getText().toString().equals("")) {
+//                        EMA2_15min.setError("required");
+//                        return;
+//                    }
+//
+//                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_15min.getText().toString()), Double.parseDouble(EMA2_15min.getText().toString()));
+//                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
+//                    break;
+//                }
+//                case "30m": {
+//                    if (EMA1_30min.getText().toString().equals("")) {
+//                        EMA1_30min.setError("required");
+//                        return;
+//                    }
+//                    if (EMA2_30min.getText().toString().equals("")) {
+//                        EMA2_30min.setError("required");
+//                        return;
+//                    }
+//
+//                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_30min.getText().toString()), Double.parseDouble(EMA2_30min.getText().toString()));
+//                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
+//                    break;
+//                }
+//                case "1h": {
+//                    if (EMA1_1hr.getText().toString().equals("")) {
+//                        EMA1_1hr.setError("required");
+//                        return;
+//                    }
+//                    if (EMA2_1hr.getText().toString().equals("")) {
+//                        EMA2_1hr.setError("required");
+//                        return;
+//                    }
+//
+//                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_1hr.getText().toString()), Double.parseDouble(EMA2_1hr.getText().toString()));
+//                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
+//                    break;
+//                }
+//                case "4h": {
+//                    if (EMA1_4hr.getText().toString().equals("")) {
+//                        EMA1_4hr.setError("required");
+//                        return;
+//                    }
+//                    if (EMA2_4hr.getText().toString().equals("")) {
+//                        EMA2_4hr.setError("required");
+//                        return;
+//                    }
+//
+//                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_4hr.getText().toString()), Double.parseDouble(EMA2_4hr.getText().toString()));
+//                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
+//                    break;
+//                }
+//                case "1d": {
+//                    if (EMA1_1d.getText().toString().equals("")) {
+//                        EMA1_1d.setError("required");
+//                        return;
+//                    }
+//                    if (EMA2_1d.getText().toString().equals("")) {
+//                        EMA2_1d.setError("required");
+//                        return;
+//                    }
+//
+//                    boolean r = myDB.addData(selectedSymbol, t, Double.parseDouble(EMA1_1d.getText().toString()), Double.parseDouble(EMA2_1d.getText().toString()));
+//                    Log.d("mytag", "EMA1 & EMA2 added=" + r);
+//                    break;
+//                }
+//            }
+//        }
 
     }
 

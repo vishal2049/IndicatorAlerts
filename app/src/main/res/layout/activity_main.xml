@@ -274,14 +274,28 @@
         </RelativeLayout>
     </LinearLayout>
 
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <Button
         android:id="@+id/run"
         android:layout_width="140dp"
         android:layout_height="55dp"
         android:layout_marginVertical="20dp"
-        android:layout_gravity="center"
+        android:layout_centerInParent="true"
         android:onClick="run"
         android:text="Run"/>
+    <TextView
+        android:id="@+id/showTime"
+        android:layout_width="100dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:textColor="#DD2C00"
+        android:textSize="35dp"
+        android:text="time"/>
+</RelativeLayout>
+
 
 </LinearLayout>

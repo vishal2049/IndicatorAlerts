@@ -55,6 +55,23 @@ public class myDBHelper extends SQLiteOpenHelper {
         long result = mdb.insert(symbol, null, values);
         return result != -1;
     }
+    public boolean addDataMA1(String symbol, String time, double MA1) {
+        SQLiteDatabase mdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TIME, time);
+        values.put(COLUMN_EMA1, MA1);
+        long result = mdb.insert(symbol, null, values);
+        return result != -1;
+    }
+    public boolean addDataMA2(String symbol, String time, double MA2) {
+        SQLiteDatabase mdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TIME, time);
+        values.put(COLUMN_EMA2, MA2);
+        long result = mdb.insert(symbol, null, values);
+        return result != -1;
+    }
+
     public boolean addDataTime(String symbol, String time) {
         SQLiteDatabase mdb = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -128,5 +145,19 @@ public class myDBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_EMA1,EMA1);
         values.put(COLUMN_EMA2,EMA2);
         mdb.execSQL("UPDATE "+symbol+" SET "+COLUMN_EMA1+"="+EMA1+", "+COLUMN_EMA2+"="+EMA2+" WHERE "+COLUMN_TIME+"="+t);
+    }
+    public void updateEMADataBase1(String symbol, String time, double EMA1){
+        String t = "'"+time+"'";
+        SQLiteDatabase mdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_EMA1,EMA1);
+        mdb.execSQL("UPDATE "+symbol+" SET "+COLUMN_EMA1+"="+EMA1 +" WHERE "+COLUMN_TIME+"="+t);
+    }
+    public void updateEMADataBase2(String symbol, String time, double EMA2){
+        String t = "'"+time+"'";
+        SQLiteDatabase mdb = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_EMA2,EMA2);
+        mdb.execSQL("UPDATE "+symbol+" SET "+COLUMN_EMA2+"="+EMA2+" WHERE "+COLUMN_TIME+"="+t);
     }
 }
